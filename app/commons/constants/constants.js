@@ -1,0 +1,1 @@
+var cons = angular.module('app');
