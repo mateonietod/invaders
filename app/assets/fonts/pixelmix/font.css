@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'Pixelmix';
+  src: url('pixelmix-webfont.eot');
+  src: url('pixelmix-webfont.woff2') format('woff2'),
+       url('pixelmix-webfont.woff') format('woff'),
+       url('pixelmix-webfont.ttf') format('truetype'),
+       url('pixelmix-webfont.svg#pixelmix') format('svg'),
+       url('pixelmix-webfont.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+

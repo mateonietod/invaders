@@ -1,4 +1,4 @@
-<div class="scores" ng-class="{'active': ctrl.pageService.checkPage('scores')}" ng-controller="puntajesController as pctrl">
+<div class="scores">
     <h4>
         <center>Puntajes</center>
     </h4>
@@ -12,7 +12,7 @@
             </tbody>
     </table>
     <center class="green c-pointer" ng-if="pctrl.usuarioService.checkuser()" ng-click="ctrl.restartgame()">Seguir Jugando</center>
-    <center class="green c-pointer" ng-if="!pctrl.usuarioService.checkuser()" ng-click="pctrl.pageService.selectPage('menu')">Inicio</center>
+    <center class="green c-pointer" ng-if="!pctrl.usuarioService.checkuser()" ui-sref="home">Inicio</center>
     <div class="fb-share-button" data-href="http://www.festivalestereopicnic.com/2017/arcade/" data-layout="button" data-size="large" data-mobile-iframe="true">
         <a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.festivalestereopicnic.com%2F2017%2Farcade%2F&amp;src=sdkpreparse">
             <span>Compartir</span></a>
