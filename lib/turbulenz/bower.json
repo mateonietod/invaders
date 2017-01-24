@@ -1,0 +1,12 @@
+{
+  "name": "turbulenz",
+  "authors": [
+    "Julian Izquierdo <julian.izquierdo@mocionsoft.com>"
+  ],
+  "description": "",
+  "main": [
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true
+}
