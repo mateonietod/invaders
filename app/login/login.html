@@ -1,1 +1,13 @@
-<h1>Login</h1>
+<div class="login" ng-class="{'active': ctrl.pageService.checkPage('login')}">
+    <h4>
+        <center>Concurso boletas FEP 2017</center>
+    </h4>
+    <form ng-submit="ctrl.login()" class="userForm">
+        <input type="number" ng-model="ctrl.user.cedula" required placeholder="cedula"> <br>
+        <input type="submit" class="green" value="Jugar">
+    </form>
+    <h6>
+        <center class="c-pointer" ui-sref="home">
+        < Volver</center>
+    </h6>
+</div>
