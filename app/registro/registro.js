@@ -1,4 +1,4 @@
-angular.module('app').controller("RegistoCtrl", function ($scope, $state) {
+angular.module('app').controller("RegistroCtrl", function ($scope, $state) {
 
   
   
