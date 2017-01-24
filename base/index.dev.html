@@ -1,15 +1,77 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>NutriCoach CMS</title>
+        <title>Galaxy</title>
         <!-- styles -->
-        <link href="lib/semantic/dist/semantic.min.css" rel="stylesheet" type="text/css"/>
         <link href="app.css" rel="stylesheet" type="text/css"/>
     </head>
 
     <body ng-app="app">
-        <div ui-view></div>
+        <!-- fb tag -->
+    <div id="fb-root"></div>
+    <script>
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.8&appId=222505828124737";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+        </script>
+        <!-- end fb tag -->
+        <!-- Analytics -->
+        <script>
+            (function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function() {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+            ga('create', 'UA-57566002-1', 'auto');
+            ga('send', 'pageview');
+        </script>
+        <!-- Analytics -->
+        <div class="imgmobile">
+            <img src="app/assets/imgs/arcade-movil-no-se-puede-jugar.png" alt="imagen mobile">
+        </div>
+        <div class="machine"><img src="app/assets/imgs/arcade.png" alt="" class="img"></div>
+        <div class="logoFEP"><a target="_blank" href="http://www.festivalestereopicnic.com/2017/">logo</a></div>
+        <!-- The canvas for the panning background -->
+        <div class="arcade">
+            <i class="audio" ng-click="ctrl.mute()" ng-class="{'active': isActive}"></i>
+            <div class="text-navidad">
+                <img src="app/assets/imgs/texto-navidad.svg" alt="texto">
+            </div>
+            <div class="joystick">
+                <div class="left" onclick="discreteLeft()"></div>
+                <div class="right" onclick="discreteRight()"></div>
+            </div>
+            <div class="button_machine" onclick="shoot()"></div>
+        </div>
 
+
+        <div class="canvas-cont">
+
+
+            <div data-f="{{ctrl.pageService.pageSelected}}" class="loading" id="loading">
+                <div ui-view></div>
+            </div>
+        
+        </div>
+
+
+
+
+        <div class="logoMocion">
+            <a href="http://www.mocionsoft.com/?utm_source=estereopicnic&utm_campaign=aliados&utm_medium=pagina%20web%20aliado&utm_content=arcade" target="_blank"><img src="app/assets/imgs/LOGO-MOCIONblanco.svg" alt="" width="100"></a>
+        </div>
+        <span us-spinner spinner-key="spinner-1"></span>
         <!-- bower:js -->
         <!-- endbower -->
 

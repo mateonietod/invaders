@@ -1,0 +1,21 @@
+<div class="instructions" ng-class="{'active': ctrl.pageService.checkPage('instructions')}">
+    <h5>Como jugar</h5>
+    <p class="text">Utiliza la barra espaciadora para disparar y las flechas izquierda y derecha para desplazar la nave</p>
+    <div class="spacebar">
+        <div class="image"></div>
+        <div class="text">
+            Disparar
+        </div>
+    </div>
+    <div class="arrow">
+        <div class="left" style="padding: 0 1rem 0 0;">
+            <div class="key">&LeftArrow;</div>
+            <div class="text">izquierda</div>
+        </div>
+        <div class="right">
+            <div class="key">&RightArrow;</div>
+            <div class="text">derecha</div>
+        </div>
+    </div> <br><br>
+    <center class="green mouse-action" ng-click="ctrl.login()">Jugar</center>
+</div>

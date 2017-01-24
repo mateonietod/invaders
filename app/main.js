@@ -8,7 +8,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     url: '/init',
     templateUrl: 'app/init/init.html',
     controller: 'InitCtrl'
-  });
+  }); 
   
   $stateProvider.state('home', {
     url: '/home',
@@ -32,6 +32,12 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     url: '/puntajes',
     templateUrl: 'app/puntajes/puntajes.html',
     controller: 'PuntajesCtrl'
+  });
+
+  $stateProvider.state('instruciones', {
+    url: '/instruciones',
+    templateUrl: 'app/instruciones/instruciones.html',
+    controller: 'InstrucionesCtrl'
   });
 
   $stateProvider.state('juego', {
