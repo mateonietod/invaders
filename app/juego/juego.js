@@ -1,4 +1,11 @@
-angular.module('app').controller("JuegoCtrl", function($scope, $state) {
+angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _mocifire) {
+
+    $scope.saveScore = function () {
+        _mocifire.database().ref("scores").child($user.id).transaction(function (score) {
+          return ($scope.score > score) ? $scope.score : score;
+          // return $scope.score;
+        });
+    }
 
     TurbulenzEngine = WebGLTurbulenzEngine.create({
         canvas: document.getElementById("ship")
@@ -46,14 +53,14 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state) {
     var pause = false;                                          // Boolean to enable/disable game pauses
     var level = 0;                                              // Current Level
     var first = true;                                           // Press any key to start boolean
-    var shipAsset = "imgs/ship2.png";                           // Location of the ship image
+    var shipAsset = "assets/ship2.png";                           // Location of the ship image
     var bulletAsset = "assets/textures/particle_spark.png";     // Location of the bullet image
     var badBulletAsset = "assets/textures/particle_spark.png";  // Location of the bad bullet image
-    var enemyAsset = "imgs/enemy3.png";                         // Location of the enemy image
-    var backgroundAsset = "imgs/bg2.png";                       // Location of the background image
-    var gogoAsset = "imgs/game_over.png";                       // Location of the game over image
-    var pauseAsset = "imgs/pause.png";                          // Location of the pause image
-    var anyKeyAsset = "imgs/any_key.png";                       // Location of the intro message image
+    var enemyAsset = "assets/enemy3.png";                         // Location of the enemy image
+    var backgroundAsset = "assets/bg2.png";                       // Location of the background image
+    var gogoAsset = "assets/game_over.png";                       // Location of the game over image
+    var pauseAsset = "assets/pause.png";                          // Location of the pause image
+    var anyKeyAsset = "assets/any_key.png";                       // Location of the intro message image
     var times = [];                                             // Array with all the timestamps of a level change
     var detailedTimes = {};                                     // Object with "level" : "elapsed time" specifications
 

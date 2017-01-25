@@ -66,50 +66,52 @@
 
         </div>
 
-
-
+        <div class="score">
+            <span class="userName" ng-if="ctrl.user.name">{{ctrl.user.name}}:</span> <span id="score"></span>
+        </div>
 
         <div class="logoMocion">
             <a href="http://www.mocionsoft.com/?utm_source=estereopicnic&utm_campaign=aliados&utm_medium=pagina%20web%20aliado&utm_content=arcade" target="_blank"><img src="app/assets/imgs/LOGO-MOCIONblanco.svg" alt="" width="100"></a>
         </div>
         <span us-spinner spinner-key="spinner-1"></span>
+        <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
         <!-- bower:js -->
         <!-- endbower -->
 
         <!-- Custom Scripts -->
         <script src="app/main.js"></script>
 
-        <script src="jslib/debug.js"></script>
-        <script src="jslib/webgl/turbulenzengine.js"></script>
-        <script src="jslib/webgl/graphicsdevice.js"></script>
-        <script src="jslib/webgl/inputdevice.js"></script>
-        <script src="jslib/webgl/sounddevice.js"></script>
-        <script src="jslib/aabbtree.js"></script>
-        <script src="jslib/assettracker.js"></script>
-        <script src="jslib/camera.js"></script>
-        <script src="jslib/draw2d.js"></script>
-        <script src="jslib/effectmanager.js"></script>
-        <script src="jslib/fontmanager.js"></script>
-        <script src="jslib/forwardrendering.js"></script>
-        <script src="jslib/geometry.js"></script>
-        <script src="jslib/indexbuffermanager.js"></script>
-        <script src="jslib/light.js"></script>
-        <script src="jslib/loadingscreen.js"></script>
-        <script src="jslib/material.js"></script>
-        <script src="jslib/observer.js"></script>
-        <script src="jslib/renderingcommon.js"></script>
-        <script src="jslib/requesthandler.js"></script>
-        <script src="jslib/resourceloader.js"></script>
-        <script src="jslib/scene.js"></script>
-        <script src="jslib/scenenode.js"></script>
-        <script src="jslib/shadermanager.js"></script>
-        <script src="jslib/shadowmapping.js"></script>
-        <script src="jslib/soundmanager.js"></script>
-        <script src="jslib/texturemanager.js"></script>
-        <script src="jslib/utilities.js"></script>
-        <script src="jslib/vertexbuffermanager.js"></script>
-        <script src="jslib/physics2ddevice.js"></script>
-        <script src="jslib/boxtree.js"></script>
+        <script src="lib/turbulenz/jslib/debug.js"></script>
+        <script src="lib/turbulenz/jslib/webgl/turbulenzengine.js"></script>
+        <script src="lib/turbulenz/jslib/webgl/graphicsdevice.js"></script>
+        <script src="lib/turbulenz/jslib/webgl/inputdevice.js"></script>
+        <script src="lib/turbulenz/jslib/webgl/sounddevice.js"></script>
+        <script src="lib/turbulenz/jslib/aabbtree.js"></script>
+        <script src="lib/turbulenz/jslib/assettracker.js"></script>
+        <script src="lib/turbulenz/jslib/camera.js"></script>
+        <script src="lib/turbulenz/jslib/draw2d.js"></script>
+        <script src="lib/turbulenz/jslib/effectmanager.js"></script>
+        <script src="lib/turbulenz/jslib/fontmanager.js"></script>
+        <script src="lib/turbulenz/jslib/forwardrendering.js"></script>
+        <script src="lib/turbulenz/jslib/geometry.js"></script>
+        <script src="lib/turbulenz/jslib/indexbuffermanager.js"></script>
+        <script src="lib/turbulenz/jslib/light.js"></script>
+        <script src="lib/turbulenz/jslib/loadingscreen.js"></script>
+        <script src="lib/turbulenz/jslib/material.js"></script>
+        <script src="lib/turbulenz/jslib/observer.js"></script>
+        <script src="lib/turbulenz/jslib/renderingcommon.js"></script>
+        <script src="lib/turbulenz/jslib/requesthandler.js"></script>
+        <script src="lib/turbulenz/jslib/resourceloader.js"></script>
+        <script src="lib/turbulenz/jslib/scene.js"></script>
+        <script src="lib/turbulenz/jslib/scenenode.js"></script>
+        <script src="lib/turbulenz/jslib/shadermanager.js"></script>
+        <script src="lib/turbulenz/jslib/shadowmapping.js"></script>
+        <script src="lib/turbulenz/jslib/soundmanager.js"></script>
+        <script src="lib/turbulenz/jslib/texturemanager.js"></script>
+        <script src="lib/turbulenz/jslib/utilities.js"></script>
+        <script src="lib/turbulenz/jslib/vertexbuffermanager.js"></script>
+        <script src="lib/turbulenz/jslib/physics2ddevice.js"></script>
+        <script src="lib/turbulenz/jslib/boxtree.js"></script>
 
         <!-- include: "type": "js", "files": "app/*/**/*.js" -->
         <!-- /include -->
