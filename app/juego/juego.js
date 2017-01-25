@@ -1,9 +1,10 @@
 angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _mocifire) {
 
     $scope.saveScore = function () {
-        _mocifire.database().ref("scores").child($user.id).transaction(function (score) {
-          return ($scope.score > score) ? $scope.score : score;
-          // return $scope.score;
+        _mocifire.database().ref("scores").child($user.id).child("score").transaction(function (score) {
+          // return ($scope.score > score) ? $scope.score : score;
+          console.log($scope.score);
+          return $scope.score;
         });
     }
 
