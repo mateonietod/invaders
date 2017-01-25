@@ -259,7 +259,7 @@ input.green {
   width: 62px;
   height: 62px;
   position: absolute;
-  bottom: 80px;
+  bottom: 60px;
   left: 15px;
   max-width: 190px;
   z-index: 222;
@@ -269,7 +269,7 @@ input.green {
   width: 62px;
   height: 62px;
   position: absolute;
-  bottom: 40px;
+  bottom: 20px;
   left: 90px;
   max-width: 190px;
   z-index: 222;
@@ -382,6 +382,12 @@ input.green {
 }
 .imgmobile{
   display: none;
+}
+.fb-share-button {
+  position: absolute;
+  left: 40px;
+  bottom: 10px;
+  color: transparent;
 }
 @media(max-width:768px){
   .text-navidad {
@@ -526,6 +532,12 @@ input.green {
   .scores:not(.gameover) {
     top: -40px;
   }
+  .fb-share-button {
+    position: absolute;
+    transform: scale(.7);
+    right: 0;
+    bottom: 5px;
+  }
 }
 
 @media(min-width: 360px) and (max-width: 376px){
@@ -660,5 +672,11 @@ input.green {
   }
   .scores:not(.gameover) {
     top: -40px;
+  }
+  .fb-share-button {
+    position: absolute;
+    transform: scale(.7);
+    right: 10px;
+    bottom: 7px;
   }
 }
