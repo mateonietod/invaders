@@ -273,20 +273,20 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
         }
     }
 
-    $('#left-btn').on('click', function() {
-        mvmnt = 0;
-        first = false;
-        if (ship.x >= (xLeftLimit - 20)) {
-            ship.x -= offsetMovement;
-        }
+    $('#left-btn').on('touchstart', function() {
+        moveLeft();
     });
 
-    $('#right-btn').on('click', function() {
-        mvmnt = 0;
-        first = false;
-        if (ship.x <= (xRightLimit + 20)) {
-            ship.x += offsetMovement;
-        }
+    $('#right-btn').on('touchstart', function() {
+        moveRight();
+    });
+
+    $('#left-btn').on('touchend',function(){
+        stop();
+    });
+
+    $('#right-btn').on('touchend',function(){
+        stop();
     });
 
     function stop() {
