@@ -4,10 +4,17 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
         return $state.go("init");
 
     $scope.saveScore = function () {
-        _mocifire.database().ref("scores").child($user.id).child("score").transaction(function (score) {
-          return ($scope.score > score) ? $scope.score : score;
-          // return $scope.score;
+        _mocifire.database().ref("scores").child($user.id).transaction(function (userRef) {
+            if(userRef){
+                if(userRef.score < $scope.score){
+                    userRef.score = $scope.score;
+                    userRef.tiempos = $scope.evidence;
+                    userRef.juegos += 1;
+                }
+            }
+            return userRef;
         });
+
     }
 
     TurbulenzEngine = WebGLTurbulenzEngine.create({
@@ -412,6 +419,7 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
                         enemies[i].splice(k, 1);
                         universalScore += 10;
                         $scope.score = universalScore;
+                        $scope.evidence = detailedTimes;
                     }
                 }
             }
