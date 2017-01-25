@@ -8,6 +8,10 @@
         <input type="number" ng-model="ctrl.user.cedula" required placeholder="cedula"> <br>
         <h6 class="terminos"><a href="termino-FEP-arcade.pdf" target="blank">Al jugar acepto terminos y condiciones</a></h6>
         <input type="submit" class="green" value="Jugar">
+
+        <center>
+            <small ng-if="ctrl.error"></small>
+        </center>
         <h6>
             <center class="c-pointer" ui-sref="home">
             < Volver</center>
