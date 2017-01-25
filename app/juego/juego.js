@@ -395,9 +395,11 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
      */
     function increaseDifficulty() {
         if (!dead && !pause && !first) {
-            enemyFallSpeed += 0.02;
-            badBulletProbability -= 0.01;
-            enemyOffsetMovementSpeed += 0.1;
+            if(level < 15){
+                enemyFallSpeed += 0.02;
+            }
+            badBulletProbability -= 0.03;
+            enemyOffsetMovementSpeed += 0.03;
             //reloadTime = reloadTime>=0?reloadTime-50:0;
         }
     }
