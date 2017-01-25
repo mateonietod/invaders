@@ -69,45 +69,23 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
 
         /*      Game variables     */
 
-        var sixtyfps = 1000 / 60;
         var universalScore = 0;
         var mvmnt = 0;
-        var mvmntSpeed = 2;
-        var keyCodes = inputDevice.keyCodes;
-        var offsetMovement = 30;                                    // How much to move left/right when pressing arrows
         var enemyOffsetMovementSpeed = 1;                           // How fast enemies move
-        var enemySeparation = 400;                                  // Distance between enemies
         var enemyFallSpeed = 0.1;                                   // How much enemies move down every 0.0166666667 seconds
-        var downSpace = 30;                                         // Distance from bottom to main character
-        var xLeftLimit = 60;                                        // Left limit of "screen"
-        var xRightLimit = 560;                                      // Right limit of "screen"
-        var x1 = 50;                                                // Black background coordinate
-        var y1 = 50;                                                // Black background coordinate
-        var x2 = graphicsDevice.width - 50;                         // Black background coordinate
-        var y2 = graphicsDevice.height - 50;                        // Black background coordinate
         var bullets = [];                                           // Array that contains all the bullets fired by the main character
         var badBullets = [];                                        // Array that contains all the bullets fired by enemies
         var enemies = [];                                           // Array containing all the enemies
-        var rectangle = [x1, y1, x2, y2];                           // Formal figure of the rectangular background
         var bulletSpeed = 5;                                        // How fast the bullets move on each frame
         var badBulletSpeed = 2;                                     // How fast the enemy bullets move on each frame
         var badBulletProbability = 0.96;                            // Probability of an enemy shooting on a given frame. (1 - badBulletProbability)
         var badBulletAmount = 20;                                   // How much enemy bullets can be shown simultaneously
         var reloadTime = 400;                                       // Minimum time between the main character shootings. Avoids spammers
         var reload = 900;                                           // Internal variable for checking if can shoot
-        var enemyRowSize = 6;                                       // Size of enemy grid
         var dead = false;                                           // Boolean to chek if character is alive
         var pause = false;                                          // Boolean to enable/disable game pauses
         var level = 0;                                              // Current Level
         var first = true;                                           // Press any key to start boolean
-        var shipAsset = "assets/ship2.png";                           // Location of the ship image
-        var bulletAsset = "assets/textures/particle_spark.png";     // Location of the bullet image
-        var badBulletAsset = "assets/textures/particle_spark.png";  // Location of the bad bullet image
-        var enemyAsset = "assets/enemy3.png";                         // Location of the enemy image
-        var backgroundAsset = "assets/bg2.png";                       // Location of the background image
-        var gogoAsset = "assets/game_over.png";                       // Location of the game over image
-        var pauseAsset = "assets/pause.png";                          // Location of the pause image
-        var anyKeyAsset = "assets/any_key.png";                       // Location of the intro message image
         var times = [];                                             // Array with all the timestamps of a level change
         var detailedTimes = {};                                     // Object with "level" : "elapsed time" specifications
     }
