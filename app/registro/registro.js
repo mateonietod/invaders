@@ -17,5 +17,5 @@ angular.module('app').controller("RegistroCtrl", function ($state, _mocifire, $u
     });
   }
 
-  
+
 });

@@ -8,5 +8,4 @@ angular.module('app').controller("PuntajesCtrl", function ($scope, $state, _moci
         ctrl.scores = snapshot.val();
         $scope.$apply();
     });
-  
 });
