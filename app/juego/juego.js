@@ -230,7 +230,7 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
         }
     };
 
-    $('#shoot-btn').on('click',function(){
+    $('#shoot-btn').on('touchstart',function(){
         shoot();
     });
 
