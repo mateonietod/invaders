@@ -409,6 +409,7 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
                         bullets.splice(j, 1);
                         enemies[i].splice(k, 1);
                         universalScore += 10;
+                        $scope.score = universalScore;
                     }
                 }
             }
