@@ -16,13 +16,13 @@ app.run(function (_mocifire, $state) {
 app.config(function ($stateProvider, $urlRouterProvider) {
 
   $urlRouterProvider.otherwise('/init');
-  
+
   $stateProvider.state('init', {
     url: '/init',
     templateUrl: 'app/init/init.html',
     controller: 'InitCtrl'
-  }); 
-  
+  });
+
   $stateProvider.state('home', {
     url: '/home',
     templateUrl: 'app/home/home.html',

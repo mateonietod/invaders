@@ -1,5 +1,4 @@
-angular.module('app').controller("InstrucionesCtrl", function ($scope, $state) {
+angular.module('app').controller("InstrucionesCtrl", function($scope, $state) {
 
-  
-  
+
 });
