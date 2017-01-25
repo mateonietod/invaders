@@ -39,7 +39,7 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
     var offsetMovement = 30;                                    // How much to move left/right when pressing arrows
     var enemyOffsetMovementSpeed = 1;                           // How fast enemies move
     var enemySeparation = 400;                                  // Distance between enemies
-    var enemyFallSpeed = 0.1;                                   // How much enemies move down every 0.0166666667 seconds
+    var enemyFallSpeed = 0.03;                                  // How much enemies move down every 0.0166666667 seconds
     var downSpace = 30;                                         // Distance from bottom to main character
     var xLeftLimit = 60;                                        // Left limit of "screen"
     var xRightLimit = 560;                                      // Right limit of "screen"
@@ -62,14 +62,14 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
     var pause = false;                                          // Boolean to enable/disable game pauses
     var level = 0;                                              // Current Level
     var first = true;                                           // Press any key to start boolean
-    var shipAsset = "assets/ship2.png";                           // Location of the ship image
+    var shipAsset = "assets/ship2.png";                         // Location of the ship image
     var bulletAsset = "assets/textures/particle_spark.png";     // Location of the bullet image
     var badBulletAsset = "assets/textures/particle_spark.png";  // Location of the bad bullet image
-    var enemyAsset = "assets/enemy3.png";                         // Location of the enemy image
-    var backgroundAsset = "assets/bg2.png";                       // Location of the background image
-    var gogoAsset = "assets/game_over.png";                       // Location of the game over image
-    var pauseAsset = "assets/pause.png";                          // Location of the pause image
-    var anyKeyAsset = "assets/any_key.png";                       // Location of the intro message image
+    var enemyAsset = "assets/enemy3.png";                       // Location of the enemy image
+    var backgroundAsset = "assets/bg2.png";                     // Location of the background image
+    var gogoAsset = "assets/game_over.png";                     // Location of the game over image
+    var pauseAsset = "assets/pause.png";                        // Location of the pause image
+    var anyKeyAsset = "assets/any_key.png";                     // Location of the intro message image
     var times = [];                                             // Array with all the timestamps of a level change
     var detailedTimes = {};                                     // Object with "level" : "elapsed time" specifications
 
@@ -417,9 +417,8 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
                         bulletPoint.y < enemies[i][k].y + (enemies[i][k].getHeight() / 2)) {
                         bullets.splice(j, 1);
                         enemies[i].splice(k, 1);
-                        universalScore += 10;
+                        universalScore += 100;
                         $scope.score = universalScore;
-                        $scope.evidence = detailedTimes;
                     }
                 }
             }
@@ -452,6 +451,7 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
         var diffSecs = timeDiff / (1000.0);
         detailedTimes[level] = diffSecs;
         times.push(deathTimer);
+        $scope.evidence = detailedTimes;
         $scope.saveScore();
         setTimeout(function(){
             $state.go('puntajes');
