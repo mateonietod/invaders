@@ -417,7 +417,7 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
                         bulletPoint.y < enemies[i][k].y + (enemies[i][k].getHeight() / 2)) {
                         bullets.splice(j, 1);
                         enemies[i].splice(k, 1);
-                        universalScore += 100;
+                        universalScore += 200;
                         $scope.score = universalScore;
                     }
                 }
