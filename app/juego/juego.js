@@ -14,6 +14,9 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
             }
             return userRef;
         });
+        _mocifire.database().ref("usuarios").child($user.id).transaction(function (score) {
+            return ($scope.score > score) ? $scope.score : score;
+        });
 
     }
 
