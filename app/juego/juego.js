@@ -193,6 +193,10 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
         }
     };
 
+    $('#shoot-btn').on('click',function(){
+        shoot();
+    });
+
     function shoot() {
         first = false;
         if (reload > reloadTime) {
@@ -232,21 +236,21 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
         }
     }
 
-    function discreteLeft() {
+    $('#left-btn').on('click', function() {
         mvmnt = 0;
         first = false;
         if (ship.x >= (xLeftLimit - 20)) {
             ship.x -= offsetMovement;
         }
-    }
+    });
 
-    function discreteRight() {
+    $('#right-btn').on('click', function() {
         mvmnt = 0;
         first = false;
         if (ship.x <= (xRightLimit + 20)) {
             ship.x += offsetMovement;
         }
-    }
+    });
 
     function stop() {
         mvmnt = 0;
@@ -412,9 +416,6 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
         var diffSecs = timeDiff / (1000.0);
         detailedTimes[level] = diffSecs;
         times.push(deathTimer);
-        $('#ship').css('display', 'none');
-        $('#game-over').html($('#game-over').html() + '<p>Puntaje: ' + universalScore + '</p>')
-        $('#game-over').css('display', 'block');
     }
 
     function myMove() {
