@@ -13,7 +13,6 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
 
     /*      Turbulenz elements      */
 
-    var phys2D = Physics2DDevice.create();
     var graphicsDevice = TurbulenzEngine.createGraphicsDevice({});
     var inputDevice = TurbulenzEngine.createInputDevice({});
     var draw2D = Draw2D.create({
