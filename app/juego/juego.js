@@ -398,7 +398,7 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
      */
     function increaseDifficulty() {
         if (!dead && !pause && !first) {
-            if(level < 15){
+            if(level < 25){
                 enemyFallSpeed += 0.02;
             }
             badBulletProbability -= 0.03;
