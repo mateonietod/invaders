@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Space Shooter Demo CMS</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+  <link rel="stylesheet" href="cms.css">
+
+</head>
+
+<body ng-app="app" ng-controller="cmsCtrl">
+
+ <div class="cargando" ng-show="cargando">
+    Cargando datos ...
+  </div>
+
+<div class="login" ng-if="!logged">
+  <input type="text" placeholder="email" ng-model="form.email">
+  <input type="password" placeholder="password" ng-model="form.pass">
+  <input type="submit" value="Enviar" ng-click="login()">
+</div>
+
+<div ng-show="!cargando && logged" class="container">
+    <button ng-click="exportar()">Exportar Excel</button><br/>
+    <label>Buscar: </label><input type="text" placeholder="Buscar" ng-model="userSearch">
+    <div id="table-export">
+      total usuarios: {{totalUsuarios}}
+      <br/>
+      total intentos: {{totalIntentos}}
+      <table cellpadding="10" align="center">
+        <thead>
+          <tr>
+            <th>Cedula</th>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Fecha</th>
+            <th>Score</th>
+            <th>Intentos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="(key, user) in usuarios |filter:userSearch | orderBy:'-score'">
+            <td>{{user.cedula}}</td>
+            <td>{{user.nombre}}</td>
+            <td>{{user.correo}}</td>
+            <td>{{user.fecha}}</td>
+            <td>{{user.score}}</td>
+            <td>{{user.juegos}}</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+</div>
+
+
+
+
+  <script src="../lib/angular/angular.js"></script>
+  <script src="../lib/firebase/firebase.js"></script>
+  <script src="../lib/file-saver/FileSaver.js"></script>
+  <script>
+       // Initialize Firebase
+      var config = {
+          apiKey: "AIzaSyAdLMKPkyGcNBvNlk8b3iqHXZ_OYVnr5P4",
+          authDomain: "arcadefep.firebaseapp.com",
+          databaseURL: "https://arcadefep.firebaseio.com",
+          storageBucket: "arcadefep.appspot.com",
+          messagingSenderId: "698167213885"
+      };
+      firebase.initializeApp(config);
+
+		</script>
+
+  <script src="cms-ctrl.js"></script>
+</body>
+
+</html>
+v
