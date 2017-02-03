@@ -1,0 +1,33 @@
+.container {
+    max-width:1200px;
+    margin: 0 auto; 
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 15px;
+}
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+input[type="text"]{
+    width: 50%;
+    height: 30px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+button{
+    width: 200px;
+    height: 30px;
+    display: block;
+    margin: 15px auto 0;
+}
