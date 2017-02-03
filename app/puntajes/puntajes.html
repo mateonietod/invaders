@@ -5,11 +5,11 @@
     <table style="color: #fff;">
         <tr ng-repeat="puntaje in ctrl.scores | toArray | orderBy:['-score', '-fecha']">
             <td>.{{$index+1}}</td>
-            <td>{{puntaje.nombre}}</td>
+            <td>{{puntaje.cedula}}</td>
             <td>{{puntaje.score}}</td>
         </tr>
     </table>
     <center class="green c-pointer" ng-if="ctrl.user.id" ui-sref="juego">Seguir Jugando</center>
     <center class="green c-pointer" ng-if="!ctrl.user.id" ui-sref="home">Inicio</center>
-    
+
 </div>

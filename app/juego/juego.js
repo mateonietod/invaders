@@ -1,243 +1,181 @@
 angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _mocifire) {
-
-    if(!$user.id)
-        return $state.go("init");
-
-    $scope.saveScore = function () {
-        _mocifire.database().ref("scores").child($user.id).transaction(function (userRef) {
-            if(userRef){
-                if(userRef.score < $scope.score){
-                    userRef.score = $scope.score;
-                    userRef.tiempos = $scope.evidence;
-                    userRef.juegos += 1;
-                }
-            }
-            return userRef;
-        });
-        _mocifire.database().ref("usuarios").child($user.id).child("score").transaction(function (score) {
-            return ($scope.score > score) ? $scope.score : score;
-        });
-
-    }
-
+    if (!$user.id) return $state.go("init");
     TurbulenzEngine = WebGLTurbulenzEngine.create({
         canvas: document.getElementById("ship")
     });
-
-    /*      Turbulenz elements      */
-
-    var graphicsDevice = TurbulenzEngine.createGraphicsDevice({});
-    var inputDevice = TurbulenzEngine.createInputDevice({});
+    var oiuh6dtwfdq = TurbulenzEngine.createGraphicsDevice({});
+    var poijd8duiwq = TurbulenzEngine.createInputDevice({});
     var draw2D = Draw2D.create({
-        graphicsDevice: graphicsDevice
+        graphicsDevice: oiuh6dtwfdq
     });
+    var qiwudhbc = 1000 / 60;
+    var qwoie31 = 0;
+    var sco7dwqles = 0;
+    var sco7dwqlesSpeed = 2;
+    var kqdyteqwd2 = poijd8duiwq.keyCodes;
+    var qwjdhhqw72 = 30;
+    var djiw98wd38 = 1;
+    var qpowd83dqw = 400;
+    var cbewoidh37 = 0.03;
+    var cbus7d9q8d = 30;
+    var duh8371dg3 = 60;
+    var ddw8hu9qwd = 560;
+    var b93yd17qgg = [];
+    var idwjw83dd7 = [];
+    var isjds8912e = [];
+    var ud8wuiqdd9 = 5;
+    var badBulletSpeed = 2;
+    var badBulletProbability = 0.96;
+    var badBulletAmount = 20;
+    var dpowd81u2h = 400;
+    var uwdloq837q = 900;
+    var wudh092dd7 = 6;
+    var ndw8dhuiqo = !1;
+    var pause = !1;
+    var id9w8duiqo = 0;
+    var pd9wi1ud7i = !0;
+    var shipAsset = "assets/ship2.png";
+    var bulletAsset = "assets/textures/particle_spark.png";
+    var badBulletAsset = "assets/textures/particle_spark.png";
+    var enemyAsset = "assets/enemy3.png";
+    var backgroundAsset = "assets/bg2.png";
+    var gogoAsset = "assets/game_over.png";
+    var pauseAsset = "assets/pause.png";
+    var anyKeyAsset = "assets/any_key.png";
+    var times = [];
+    var detailedTimes = {};
 
-    /*      Game variables     */
-
-    var sixtyfps = 1000 / 60;
-    var universalScore = 0;
-    var mvmnt = 0;
-    var mvmntSpeed = 2;
-    var keyCodes = inputDevice.keyCodes;
-    var offsetMovement = 30;                                    // How much to move left/right when pressing arrows
-    var enemyOffsetMovementSpeed = 1;                           // How fast enemies move
-    var enemySeparation = 400;                                  // Distance between enemies
-    var enemyFallSpeed = 0.03;                                  // How much enemies move down every 0.0166666667 seconds
-    var downSpace = 30;                                         // Distance from bottom to main character
-    var xLeftLimit = 60;                                        // Left limit of "screen"
-    var xRightLimit = 560;                                      // Right limit of "screen"
-    var x1 = 50;                                                // Black background coordinate
-    var y1 = 50;                                                // Black background coordinate
-    var x2 = graphicsDevice.width - 50;                         // Black background coordinate
-    var y2 = graphicsDevice.height - 50;                        // Black background coordinate
-    var bullets = [];                                           // Array that contains all the bullets fired by the main character
-    var badBullets = [];                                        // Array that contains all the bullets fired by enemies
-    var enemies = [];                                           // Array containing all the enemies
-    var rectangle = [x1, y1, x2, y2];                           // Formal figure of the rectangular background
-    var bulletSpeed = 5;                                        // How fast the bullets move on each frame
-    var badBulletSpeed = 2;                                     // How fast the enemy bullets move on each frame
-    var badBulletProbability = 0.96;                            // Probability of an enemy shooting on a given frame. (1 - badBulletProbability)
-    var badBulletAmount = 20;                                   // How much enemy bullets can be shown simultaneously
-    var reloadTime = 400;                                       // Minimum time between the main character shootings. Avoids spammers
-    var reload = 900;                                           // Internal variable for checking if can shoot
-    var enemyRowSize = 6;                                       // Size of enemy grid
-    var dead = false;                                           // Boolean to chek if character is alive
-    var pause = false;                                          // Boolean to enable/disable game pauses
-    var level = 0;                                              // Current Level
-    var first = true;                                           // Press any key to start boolean
-    var shipAsset = "assets/ship2.png";                         // Location of the ship image
-    var bulletAsset = "assets/textures/particle_spark.png";     // Location of the bullet image
-    var badBulletAsset = "assets/textures/particle_spark.png";  // Location of the bad bullet image
-    var enemyAsset = "assets/enemy3.png";                       // Location of the enemy image
-    var backgroundAsset = "assets/bg2.png";                     // Location of the background image
-    var gogoAsset = "assets/game_over.png";                     // Location of the game over image
-    var pauseAsset = "assets/pause.png";                        // Location of the pause image
-    var anyKeyAsset = "assets/any_key.png";                     // Location of the intro message image
-    var times = [];                                             // Array with all the timestamps of a level change
-    var detailedTimes = {};                                     // Object with "level" : "elapsed time" specifications
-
-
-    function initVars(){
-
-        /*      Game variables     */
-
-        var universalScore = 0;
-        var mvmnt = 0;
-        var enemyOffsetMovementSpeed = 1;                           // How fast enemies move
-        var enemyFallSpeed = 0.1;                                   // How much enemies move down every 0.0166666667 seconds
-        var bullets = [];                                           // Array that contains all the bullets fired by the main character
-        var badBullets = [];                                        // Array that contains all the bullets fired by enemies
-        var enemies = [];                                           // Array containing all the enemies
-        var bulletSpeed = 5;                                        // How fast the bullets move on each frame
-        var badBulletSpeed = 2;                                     // How fast the enemy bullets move on each frame
-        var badBulletProbability = 0.96;                            // Probability of an enemy shooting on a given frame. (1 - badBulletProbability)
-        var badBulletAmount = 20;                                   // How much enemy bullets can be shown simultaneously
-        var reloadTime = 400;                                       // Minimum time between the main character shootings. Avoids spammers
-        var reload = 900;                                           // Internal variable for checking if can shoot
-        var dead = false;                                           // Boolean to chek if character is alive
-        var pause = false;                                          // Boolean to enable/disable game pauses
-        var level = 0;                                              // Current Level
-        var first = true;                                           // Press any key to start boolean
-        var times = [];                                             // Array with all the timestamps of a level change
-        var detailedTimes = {};                                     // Object with "level" : "elapsed time" specifications
+    function initVars() {
+        var qwoie31 = 0;
+        var sco7dwqles = 0;
+        var djiw98wd38 = 1;
+        var cbewoidh37 = 0.1;
+        var b93yd17qgg = [];
+        var idwjw83dd7 = [];
+        var isjds8912e = [];
+        var ud8wuiqdd9 = 5;
+        var badBulletSpeed = 2;
+        var badBulletProbability = 0.96;
+        var badBulletAmount = 20;
+        var dpowd81u2h = 400;
+        var uwdloq837q = 900;
+        var ndw8dhuiqo = !1;
+        var pause = !1;
+        var id9w8duiqo = 0;
+        var pd9wi1ud7i = !0;
+        var times = [];
+        var detailedTimes = {}
     }
     initVars();
-    /*      Game Ojects     */
-
-    // User spaceship
     var ship = Draw2DSprite.create({
         width: 30,
         height: 30,
-        x: graphicsDevice.width / 2,
-        y: graphicsDevice.height - downSpace
+        x: oiuh6dtwfdq.width / 2,
+        y: oiuh6dtwfdq.height - cbus7d9q8d
     });
-
-    var shipTexture = graphicsDevice.createTexture({
+    var shipTexture = oiuh6dtwfdq.createTexture({
         src: shipAsset,
-        mipmaps: true,
+        mipmaps: !0,
         onload: function(texture) {
             if (texture) {
                 ship.setTexture(texture);
-                ship.setTextureRectangle([0, 0, texture.width, texture.height]);
+                ship.setTextureRectangle([0, 0, texture.width, texture.height])
             }
         }
     });
-
-    //Background image
     var bg = Draw2DSprite.create({
-        width: graphicsDevice.width,
-        height: graphicsDevice.height,
-        x: graphicsDevice.width / 2,
-        y: graphicsDevice.height / 2
+        width: oiuh6dtwfdq.width,
+        height: oiuh6dtwfdq.height,
+        x: oiuh6dtwfdq.width / 2,
+        y: oiuh6dtwfdq.height / 2
     });
-
-    var bgTexture = graphicsDevice.createTexture({
+    var bgTexture = oiuh6dtwfdq.createTexture({
         src: backgroundAsset,
-        mipmaps: true,
+        mipmaps: !0,
         onload: function(texture) {
             if (texture) {
                 bg.setTexture(texture);
-                bg.setTextureRectangle([0, 0, texture.width, texture.height]);
+                bg.setTextureRectangle([0, 0, texture.width, texture.height])
             }
         }
     });
-
-    //Game Over image
     var gameOver = Draw2DSprite.create({
-        width: graphicsDevice.width,
-        height: graphicsDevice.height,
-        x: graphicsDevice.width / 2,
-        y: graphicsDevice.height / 2
+        width: oiuh6dtwfdq.width,
+        height: oiuh6dtwfdq.height,
+        x: oiuh6dtwfdq.width / 2,
+        y: oiuh6dtwfdq.height / 2
     });
-
-    var gogoTexture = graphicsDevice.createTexture({
+    var gogoTexture = oiuh6dtwfdq.createTexture({
         src: gogoAsset,
-        mipmaps: true,
+        mipmaps: !0,
         onload: function(texture) {
             if (texture) {
                 gameOver.setTexture(texture);
-                gameOver.setTextureRectangle([0, 0, texture.width, texture.height]);
+                gameOver.setTextureRectangle([0, 0, texture.width, texture.height])
             }
         }
     });
-
-    //Pause asset
     var pauseImg = Draw2DSprite.create({
         width: 80,
         height: 30,
-        x: graphicsDevice.width / 2,
-        y: graphicsDevice.height / 2
+        x: oiuh6dtwfdq.width / 2,
+        y: oiuh6dtwfdq.height / 2
     });
-
-    var pauseTExture = graphicsDevice.createTexture({
+    var pauseTExture = oiuh6dtwfdq.createTexture({
         src: pauseAsset,
-        mipmaps: true,
+        mipmaps: !0,
         onload: function(texture) {
             if (texture) {
                 pauseImg.setTexture(texture);
-                pauseImg.setTextureRectangle([0, 0, texture.width, texture.height]);
+                pauseImg.setTextureRectangle([0, 0, texture.width, texture.height])
             }
         }
     });
-
-    //Intro asset
     var anyKeyImg = Draw2DSprite.create({
         width: 300,
         height: 30,
-        x: graphicsDevice.width / 2,
-        y: graphicsDevice.height / 2
+        x: oiuh6dtwfdq.width / 2,
+        y: oiuh6dtwfdq.height / 2
     });
-
-    var anyKeyTexture = graphicsDevice.createTexture({
+    var anyKeyTexture = oiuh6dtwfdq.createTexture({
         src: anyKeyAsset,
-        mipmaps: true,
+        mipmaps: !0,
         onload: function(texture) {
             if (texture) {
                 anyKeyImg.setTexture(texture);
-                anyKeyImg.setTextureRectangle([0, 0, texture.width, texture.height]);
+                anyKeyImg.setTextureRectangle([0, 0, texture.width, texture.height])
             }
         }
     });
-
-    //Listener for keyboard events <- SPACE ->
     var onKeyDown = function onKeyDownFn(keycode) {
-        first = false;
-        if (keycode === keyCodes.LEFT) {
-            moveLeft();
-        } else if (keycode === keyCodes.RIGHT) {
-            moveRight();
-        } else if (keycode === keyCodes.P) {
-            if (!pause) {
-                pause = true;
-                reload = 0;
-            } else {
-                pause = false;
-            }
-        } else if (keycode === keyCodes.SPACE) {
-            shoot();
-        } else if (keycode === keyCodes.F) {
-            mvmntSpeed *= 2;
+        pd9wi1ud7i = !1;
+        if (keycode === kqdyteqwd2.LEFT) {
+            ois9diyb2()
+        } else if (keycode === kqdyteqwd2.RIGHT) {
+            moveRight()
+        } else if (keycode === kqdyteqwd2.SPACE) {
+            huq6w90()
+        } else if (keycode === kqdyteqwd2.F) {
+            sco7dwqlesSpeed *= 2
         }
     };
-
     var onKeyUp = function onKeyUpFn(keycode) {
-        if (keycode === keyCodes.LEFT) {
-            stop();
-        } else if (keycode === keyCodes.RIGHT) {
-            stop();
-        } else if (keycode === keyCodes.F) {
-            mvmntSpeed /= 2;
+        if (keycode === kqdyteqwd2.LEFT) {
+            stop()
+        } else if (keycode === kqdyteqwd2.RIGHT) {
+            stop()
+        } else if (keycode === kqdyteqwd2.F) {
+            sco7dwqlesSpeed /= 2
         }
     };
-
-    $('#shoot-btn').on('touchstart',function(){
-        shoot();
+    $('#shoot-btn').on('touchstart', function() {
+        huq6w90()
     });
 
-    function shoot() {
-        first = false;
-        if (reload > reloadTime) {
-            reload = 0;
+    function huq6w90() {
+        pd9wi1ud7i = !1;
+        if (uwdloq837q > dpowd81u2h) {
+            uwdloq837q = 0;
             var toadd1 = Draw2DSprite.create({
                 width: 2,
                 height: 10,
@@ -252,334 +190,301 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
                 y: ship.y,
                 color: [0.0, 1.0, 0.0, 1.0]
             });
-            bullets.push(toadd1);
-            bullets.push(toadd2);
+            b93yd17qgg.push(toadd1);
+            b93yd17qgg.push(toadd2);
             toadd1 = null;
-            toadd2 = null;
+            toadd2 = null
         }
     }
 
-    function moveLeft() {
-        first = false;
-        if (ship.x >= xLeftLimit) {
-            mvmnt = -1 * mvmntSpeed;
+    function ois9diyb2() {
+        pd9wi1ud7i = !1;
+        if (ship.x >= duh8371dg3) {
+            sco7dwqles = -1 * sco7dwqlesSpeed
         }
     }
 
     function moveRight() {
-        first = false;
-        if (ship.x <= xRightLimit) {
-            mvmnt = mvmntSpeed;
+        pd9wi1ud7i = !1;
+        if (ship.x <= ddw8hu9qwd) {
+            sco7dwqles = sco7dwqlesSpeed
         }
     }
-
     $('#left-btn').on('touchstart', function() {
-        moveLeft();
+        ois9diyb2()
     });
-
     $('#right-btn').on('touchstart', function() {
-        moveRight();
+        moveRight()
     });
-
-    $('#left-btn').on('touchend',function(){
-        stop();
+    $('#left-btn').on('touchend', function() {
+        stop()
     });
-
-    $('#right-btn').on('touchend',function(){
-        stop();
+    $('#right-btn').on('touchend', function() {
+        stop()
     });
 
     function stop() {
-        mvmnt = 0;
+        sco7dwqles = 0
     }
-
-    inputDevice.addEventListener('keydown', onKeyDown);
-    inputDevice.addEventListener('keyup', onKeyUp);
-
-    /*
-     *   Game functions
-     */
+    poijd8duiwq.addEventListener('keydown', onKeyDown);
+    poijd8duiwq.addEventListener('keyup', onKeyUp);
 
     function newEnemy(i, j) {
         var en = Draw2DSprite.create({
             width: 30,
             height: 20,
-            x: (enemySeparation * i / enemyRowSize) + (graphicsDevice.width / 4) + (j * 10),
-            y: downSpace + (30 * j),
+            x: (qpowd83dqw * i / wudh092dd7) + (oiuh6dtwfdq.width / 4) + (j * 10),
+            y: cbus7d9q8d + (30 * j),
             direction: "right"
         });
-        var shipTexture = graphicsDevice.createTexture({
+        var shipTexture = oiuh6dtwfdq.createTexture({
             src: enemyAsset,
-            mipmaps: true,
+            mipmaps: !0,
             onload: function(texture) {
                 if (texture) {
                     en.setTexture(texture);
-                    en.setTextureRectangle([0, 0, texture.width, texture.height]);
+                    en.setTextureRectangle([0, 0, texture.width, texture.height])
                 }
             }
         });
-        return en;
+        return en
     }
-    // Add new row of @enemyRowSize enemies
+
     function newLevel() {
         var ref = null;
-        if (enemies.length != 0) {
-            var ref = enemies.reduce(function(a, b) {
-                return a.concat(b);
-            });
+        if (isjds8912e.length != 0) {
+            var ref = isjds8912e.reduce(function(a, b) {
+                return a.concat(b)
+            })
         }
-        if (enemies.length == 0 || ref.length == 0) {
-            if (level != 0) {
+        if (isjds8912e.length == 0 || ref.length == 0) {
+            if (id9w8duiqo != 0) {
                 var newNow = new Date();
                 var oldNow = times[times.length - 1];
                 var timeDiff = Math.abs(newNow.getTime() - oldNow.getTime());
                 var diffSecs = timeDiff / (1000.0);
-                detailedTimes[level] = diffSecs;
+                detailedTimes[id9w8duiqo] = diffSecs
             } else {
-                var newNow = new Date();
+                var newNow = new Date()
             }
             times.push(newNow);
-            level += 1;
+            id9w8duiqo += 1;
             increaseDifficulty();
             for (var j = 0; j < 3; j++) {
                 var tempRow = [];
-                for (var i = 0; i < enemyRowSize; i++) {
+                for (var i = 0; i < wudh092dd7; i++) {
                     tempRow.push(newEnemy(i, j))
                 }
-                enemies.push(tempRow)
+                isjds8912e.push(tempRow)
             }
         }
     }
 
-    // Render enemies
     function drawEnemies() {
-        for (var i = 0; i < enemies.length; i++) {
-            for (var j = 0; j < enemies[i].length; j++) {
-                if ((enemies[i][j].y + (enemies[i][j].getHeight() / 2)) > (ship.y - (ship.getHeight() / 2))) {
-                    die();
+        for (var i = 0; i < isjds8912e.length; i++) {
+            for (var j = 0; j < isjds8912e[i].length; j++) {
+                if ((isjds8912e[i][j].y + (isjds8912e[i][j].getHeight() / 2)) > (ship.y - (ship.getHeight() / 2))) {
+                    ksoqi9wudw0q()
                 }
-                enemies[i][j].y += enemyFallSpeed;
-                draw2D.drawSprite(enemies[i][j]);
+                isjds8912e[i][j].y += cbewoidh37;
+                draw2D.drawSprite(isjds8912e[i][j])
             }
         }
     }
 
-    // Delete bullets that went far outside from the canvas
     function deleteForgottenBullets() {
-        $.each(bullets, function(key, value) {
+        $.each(b93yd17qgg, function(key, value) {
             try {
                 if (value.y <= 30) {
-                    bullets.splice(key, 1);
+                    b93yd17qgg.splice(key, 1)
                 }
-            } catch (e) {
-
-            } finally {
-
-            }
+            } catch (e) {} finally {}
         });
-        $.each(badBullets, function(key, value) {
+        $.each(idwjw83dd7, function(key, value) {
             try {
                 if (value.y > ship.y) {
-                    badBullets.splice(key, 1);
+                    idwjw83dd7.splice(key, 1)
                 }
-            } catch (e) {
-
-            } finally {
-
-            }
-        });
+            } catch (e) {} finally {}
+        })
     };
 
-    /* Difficulty is defined by:
-     *       - How fast enemies fall
-     *       - How much bullets enemies shoot
-     *       - How fast enemies move sideways
-     *  Increased difficulty every 30 seconds
-     */
     function increaseDifficulty() {
-        if (!dead && !pause && !first) {
-            if(level < 25){
-                enemyFallSpeed += 0.02;
+        if (!ndw8dhuiqo && !pause && !pd9wi1ud7i) {
+            if (id9w8duiqo < 25) {
+                cbewoidh37 += 0.02
             }
             badBulletProbability -= 0.03;
-            enemyOffsetMovementSpeed += 0.03;
-            //reloadTime = reloadTime>=0?reloadTime-50:0;
+            djiw98wd38 += 0.03
         }
     }
 
-    // Deletes bullets and enemies if colliding
     function collision() {
-        for (var j = 0; j < bullets.length; j++) {
+        for (var j = 0; j < b93yd17qgg.length; j++) {
             var bulletPoint = {
-                x: bullets[j].x,
-                y: bullets[j].y - (bullets[j].getHeight() / 2)
+                x: b93yd17qgg[j].x,
+                y: b93yd17qgg[j].y - (b93yd17qgg[j].getHeight() / 2)
             };
-            for (var i = 0; i < enemies.length; i++) {
-                for (var k = 0; k < enemies[i].length; k++) {
-                    if (bulletPoint.x > enemies[i][k].x - (enemies[i][k].getWidth() / 2) &&
-                        bulletPoint.x < enemies[i][k].x + (enemies[i][k].getWidth() / 2) &&
-                        bulletPoint.y > enemies[i][k].y - (enemies[i][k].getHeight() / 2) &&
-                        bulletPoint.y < enemies[i][k].y + (enemies[i][k].getHeight() / 2)) {
-                        bullets.splice(j, 1);
-                        enemies[i].splice(k, 1);
-                        universalScore += 200;
-                        $scope.score = universalScore;
+            for (var i = 0; i < isjds8912e.length; i++) {
+                for (var k = 0; k < isjds8912e[i].length; k++) {
+                    if (bulletPoint.x > isjds8912e[i][k].x - (isjds8912e[i][k].getWidth() / 2) && bulletPoint.x < isjds8912e[i][k].x + (isjds8912e[i][k].getWidth() / 2) && bulletPoint.y > isjds8912e[i][k].y - (isjds8912e[i][k].getHeight() / 2) && bulletPoint.y < isjds8912e[i][k].y + (isjds8912e[i][k].getHeight() / 2)) {
+                        b93yd17qgg.splice(j, 1);
+                        isjds8912e[i].splice(k, 1);
+                        qwoie31 += 200;
+                        $scope.jidow9frq = qwoie31
                     }
                 }
             }
         }
     }
 
-    //Dies when character collides with enemy bullets
-    function dieCollision() {
-        for (var i = 0; i < badBullets.length; i++) {
+    function owdid91wd() {
+        for (var i = 0; i < idwjw83dd7.length; i++) {
             var badBulletPoint = {
-                x: badBullets[i].x,
-                y: badBullets[i].y + (badBullets[i].getHeight() / 2)
+                x: idwjw83dd7[i].x,
+                y: idwjw83dd7[i].y + (idwjw83dd7[i].getHeight() / 2)
             };
-            if (badBulletPoint.x > ship.x - (ship.getWidth() / 2) &&
-                badBulletPoint.x < ship.x + (ship.getWidth() / 2) &&
-                badBulletPoint.y > ship.y - (ship.getHeight() / 2) &&
-                badBulletPoint.y < ship.y + (ship.getHeight() / 2)) {
-                die();
+            if (badBulletPoint.x > ship.x - (ship.getWidth() / 2) && badBulletPoint.x < ship.x + (ship.getWidth() / 2) && badBulletPoint.y > ship.y - (ship.getHeight() / 2) && badBulletPoint.y < ship.y + (ship.getHeight() / 2)) {
+                ksoqi9wudw0q()
             }
         }
     }
 
-    // Called when main character dies
-    function die() {
-        dead = true;
-        var deathTimer = new Date();
-        var recent = times[times.length - 1];
-
-        var timeDiff = Math.abs(deathTimer.getTime() - recent.getTime());
+    function ksoqi9wudw0q() {
+        ndw8dhuiqo = !0;
+        var yhd8w712d7 = new Date();
+        var okd92i29 = times[times.length - 1];
+        var timeDiff = Math.abs(yhd8w712d7.getTime() - okd92i29.getTime());
         var diffSecs = timeDiff / (1000.0);
-        detailedTimes[level] = diffSecs;
-        times.push(deathTimer);
-        $scope.evidence = detailedTimes;
-        $scope.saveScore();
-        setTimeout(function(){
-            $state.go('puntajes');
-        },3000);
+        detailedTimes[id9w8duiqo] = diffSecs;
+        times.push(yhd8w712d7);
+        $scope.u8wudh1mnd = detailedTimes;
+        $scope.iw9018undw();
+        setTimeout(function() {
+            $state.go('puntajes')
+        }, 3000)
+    }
+    $scope.iw9018undw = function() {
+        _mocifire.database().ref("scores").child($user.id).transaction(function(p0w9dnd1) {
+            if (p0w9dnd1) {
+                if (p0w9dnd1.score < $scope.jidow9frq) {
+                    p0w9dnd1.score = $scope.jidow9frq;
+                    p0w9dnd1.tiempos = $scope.u8wudh1mnd;
+                    p0w9dnd1.juegos += 1
+                }
+            }
+            return p0w9dnd1
+        });
+        _mocifire.database().ref("usuarios").child($user.id).child("score").transaction(function(p0mki8hne) {
+            return ($scope.jidow9frq > p0mki8hne) ? $scope.jidow9frq : p0mki8hne
+        })
     }
 
     function myMove() {
-        if (mvmnt > 0) {
-            if (ship.x <= (xRightLimit + 20)) {
-                ship.x += mvmnt;
+        if (sco7dwqles > 0) {
+            if (ship.x <= (ddw8hu9qwd + 20)) {
+                ship.x += sco7dwqles
             }
-        } else if (mvmnt < 0) {
-            if (ship.x >= (xLeftLimit - 20)) {
-                ship.x += mvmnt;
+        } else if (sco7dwqles < 0) {
+            if (ship.x >= (duh8371dg3 - 20)) {
+                ship.x += sco7dwqles
             }
         }
     }
 
-    // Moves enemies their corresponding direction
     function enemyMove() {
-        if (!dead && !pause && !first) {
-            for (var i = 0; i < enemies.length; i++) {
-                for (var j = 0; j < enemies[i].length; j++) {
-                    if (enemies[i][j].direction == "right") {
+        if (!ndw8dhuiqo && !pause && !pd9wi1ud7i) {
+            for (var i = 0; i < isjds8912e.length; i++) {
+                for (var j = 0; j < isjds8912e[i].length; j++) {
+                    if (isjds8912e[i][j].direction == "right") {
                         var distance = 1;
-                        if ((enemies[i][enemies[i].length - 1].x + (enemies[i][enemies[i].length - 1].getWidth() / 2)) >= xRightLimit) {
+                        if ((isjds8912e[i][isjds8912e[i].length - 1].x + (isjds8912e[i][isjds8912e[i].length - 1].getWidth() / 2)) >= ddw8hu9qwd) {
                             var distance = -1;
-                            enemies[i][j].direction = "left";
+                            isjds8912e[i][j].direction = "left"
                         }
                     } else {
                         var distance = -1;
-                        if ((enemies[i][0].x - (enemies[i][0].getWidth() / 2)) <= xLeftLimit) {
+                        if ((isjds8912e[i][0].x - (isjds8912e[i][0].getWidth() / 2)) <= duh8371dg3) {
                             var distance = 1;
-                            enemies[i][j].direction = "right";
+                            isjds8912e[i][j].direction = "right"
                         }
                     }
-
-                    enemies[i][j].x += distance * enemyOffsetMovementSpeed;
+                    isjds8912e[i][j].x += distance * djiw98wd38
                 }
             }
         }
     }
 
-    // Fills the enemy bullets array on a given @badBulletProbability chance to shoot or not
     function enemyShoot() {
-        if (!dead && !pause && !first) {
-            for (var i = 0; i < enemies.length; i++) {
-                for (var j = 0; j < enemies[i].length; j++) {
-                    if (Math.random() >= badBulletProbability && badBullets.length < badBulletAmount) {
+        if (!ndw8dhuiqo && !pause && !pd9wi1ud7i) {
+            for (var i = 0; i < isjds8912e.length; i++) {
+                for (var j = 0; j < isjds8912e[i].length; j++) {
+                    if (Math.random() >= badBulletProbability && idwjw83dd7.length < badBulletAmount) {
                         var t = Draw2DSprite.create({
                             width: 2,
                             height: 10,
-                            x: enemies[i][j].x,
-                            y: enemies[i][j].y,
+                            x: isjds8912e[i][j].x,
+                            y: isjds8912e[i][j].y,
                             color: [1.0, 0.0, 0.0, 1.0]
                         });
-                        badBullets.push(t);
+                        idwjw83dd7.push(t)
                     }
                 }
             }
         }
     }
 
-    // Display score and update it every 0.0166666667 seconds
     function updateScore() {
         var lmnt = document.getElementById('score');
-        lmnt.innerHTML = "Level " + level + " - " + universalScore + " points";
+        lmnt.innerHTML = "Level " + id9w8duiqo + " - " + qwoie31 + " points"
     }
 
-    // Random generator found on Google :V
     function getRandomInt(min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
+        return Math.floor(Math.random() * (max - min + 1)) + min
     }
 
-    // 60 fps main screen updater
     function update() {
-
-        if (graphicsDevice.beginFrame()) {
+        if (oiuh6dtwfdq.beginFrame()) {
             draw2D.begin();
-            if (!dead) {
-                if (first) {
-                    draw2D.drawSprite(anyKeyImg);
+            if (!ndw8dhuiqo) {
+                if (pd9wi1ud7i) {
+                    draw2D.drawSprite(anyKeyImg)
                 } else {
                     draw2D.drawSprite(bg);
                     if (!pause) {
-
-                        $.each(bullets, function(key, value) {
-                            value.y -= bulletSpeed;
-                            draw2D.drawSprite(value);
+                        $.each(b93yd17qgg, function(key, value) {
+                            value.y -= ud8wuiqdd9;
+                            draw2D.drawSprite(value)
                         });
-                        $.each(badBullets, function(key, value) {
+                        $.each(idwjw83dd7, function(key, value) {
                             value.y += badBulletSpeed;
-                            draw2D.drawSprite(value);
+                            draw2D.drawSprite(value)
                         });
                         draw2D.drawSprite(ship);
                         drawEnemies();
                         collision();
-                        dieCollision();
-                        updateScore();
+                        owdid91wd();
+                        updateScore()
                     } else {
-                        draw2D.drawSprite(pauseImg);
+                        draw2D.drawSprite(pauseImg)
                     }
                 }
             } else {
-                draw2D.drawSprite(gameOver);
+                draw2D.drawSprite(gameOver)
             }
             draw2D.end();
-
-            graphicsDevice.endFrame();
+            oiuh6dtwfdq.endFrame()
         }
     }
-
-    // Set times for each function for when to update. 1000 for 1 second
     TurbulenzEngine.setInterval(enemyShoot, 200);
-    TurbulenzEngine.setInterval(newLevel, sixtyfps);
-    TurbulenzEngine.setInterval(enemyMove, sixtyfps);
-    TurbulenzEngine.setInterval(update, sixtyfps);
+    TurbulenzEngine.setInterval(newLevel, qiwudhbc);
+    TurbulenzEngine.setInterval(enemyMove, qiwudhbc);
+    TurbulenzEngine.setInterval(update, qiwudhbc);
     TurbulenzEngine.setInterval(deleteForgottenBullets, 100);
-    TurbulenzEngine.setInterval(myMove, sixtyfps);
+    TurbulenzEngine.setInterval(myMove, qiwudhbc);
     TurbulenzEngine.setInterval(function() {
-        if (!dead && !pause && !first) {
-            reload += 10
+        if (!ndw8dhuiqo && !pause && !pd9wi1ud7i) {
+            uwdloq837q += 10
         }
-    }, 1000 / 100);
-
-});
+    }, 1000 / 100)
+})

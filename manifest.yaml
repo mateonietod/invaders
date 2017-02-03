@@ -1,0 +1,19 @@
+aspect_ratio: '16:9'
+canvas_main: app/juego/juego.js
+cover_art: ''
+deploy_files:
+- app/uego/juego.html
+- app/juego/juego.js
+deployed: Never
+engine_version: '0.28'
+flash_main: ''
+has_notifications: false
+is_multiplayer: false
+is_temp: false
+mapping_table: ''
+modified: 16:09 | 03/02/2017
+path: /var/www/html/fepgame
+plugin_main: app/uego/juego.html
+slug: fepgame
+title: fepgame
+title_logo: ''
