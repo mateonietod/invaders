@@ -8,25 +8,27 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
     var podu28719u9 = Draw2D.create({
         graphicsDevice: oiuh6dtwfdq
     });
-    var qiwudhbc = 1000 / 60;
-    var womdomw909 = 0;
-    var sco7dwqles = 0;
+    const qiwudhbc = 1000 / 60;
+    const poqwjd719d8 = 200;
+    const duh8371dg3 = 90;
+    const ddw8hu9qwd = 510;
     var ijwd812098 = 2;
     var kqdyteqwd2 = poijd8duiwq.keyCodes;
     var qwjdhhqw72 = 30;
     var djiw98wd38 = 1;
     var qpowd83dqw = 400;
+    var womdomw909 = 0;
+    var sco7dwqles = 0;
     var cbewoidh37 = 0.03;
     var cbus7d9q8d = 30;
-    var duh8371dg3 = 60;
-    var ddw8hu9qwd = 560;
     var b93yd17qgg = [];
     var idwjw83dd7 = [];
     var isjds8912e = [];
     var ud8wuiqdd9 = 5;
     var wuhd7wud71 = 2;
     var w8udncuw8y = 0.96;
-    var wuhdqo2uw9 = 20;
+    var wuhdqo2uw9 = 40;
+    var pl3r918syt = 0;
     var dpowd81u2h = 400;
     var uwdloq837q = 900;
     var wudh092dd7 = 6;
@@ -46,17 +48,18 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
     var detailedTimes = {};
 
     function initVars() {
-        var womdomw909 = 0;
-        var sco7dwqles = 0;
         var djiw98wd38 = 1;
         var cbewoidh37 = 0.1;
         var b93yd17qgg = [];
         var idwjw83dd7 = [];
         var isjds8912e = [];
+        var womdomw909 = 0;
+        var sco7dwqles = 0;
         var ud8wuiqdd9 = 5;
         var wuhd7wud71 = 2;
         var w8udncuw8y = 0.96;
         var wuhdqo2uw9 = 20;
+        var pl3r918syt = 0;
         var dpowd81u2h = 400;
         var uwdloq837q = 900;
         var ndw8dhuiqo = !1;
@@ -311,9 +314,7 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
 
     function dffq987dq1() {
         if (!ndw8dhuiqo && !pause && !pd9wi1ud7i) {
-            if (id9w8duiqo < 25) {
-                cbewoidh37 += 0.02
-            }
+            cbewoidh37 += 0.02
             wuhdqo2uw9 += 1;
             w8udncuw8y -= 0.03;
             djiw98wd38 += 0.03
@@ -331,7 +332,8 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
                     if (bulletPoint.x > isjds8912e[i][k].x - (isjds8912e[i][k].getWidth() / 2) && bulletPoint.x < isjds8912e[i][k].x + (isjds8912e[i][k].getWidth() / 2) && bulletPoint.y > isjds8912e[i][k].y - (isjds8912e[i][k].getHeight() / 2) && bulletPoint.y < isjds8912e[i][k].y + (isjds8912e[i][k].getHeight() / 2)) {
                         b93yd17qgg.splice(j, 1);
                         isjds8912e[i].splice(k, 1);
-                        womdomw909 += 200;
+                        womdomw909 += poqwjd719d8;
+                        pl3r918syt += 1;
                         $scope.jidow9frq = womdomw909
                     }
                 }
@@ -368,16 +370,17 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
     $scope.iw9018undw = function() {
         _mocifire.database().ref("scores").child($user.id).transaction(function(p0w9dnd1) {
             if (p0w9dnd1) {
-                if (p0w9dnd1.score < $scope.jidow9frq) {
-                    p0w9dnd1.score = $scope.jidow9frq;
+                if ((p0w9dnd1.score < $scope.jidow9frq) && ($scope.jidow9frq === (pl3r918syt * poqwjd719d8)) && (poqwjd719d8 === 200)) {
+                    p0w9dnd1.score = pl3r918syt * poqwjd719d8;
                     p0w9dnd1.tiempos = $scope.u8wudh1mnd;
-                    p0w9dnd1.juegos += 1
+                    p0w9dnd1.juegos += 1;
+                    p0w9dnd1.sz = pl3r918syt;
                 }
             }
             return p0w9dnd1
         });
         _mocifire.database().ref("usuarios").child($user.id).child("score").transaction(function(p0mki8hne) {
-            return ($scope.jidow9frq > p0mki8hne) ? $scope.jidow9frq : p0mki8hne
+            return ($scope.jidow9frq > p0mki8hne) ? (pl3r918syt * poqwjd719d8) : p0mki8hne
         })
     }
 
