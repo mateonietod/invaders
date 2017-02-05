@@ -5,13 +5,13 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
     });
     var oiuh6dtwfdq = TurbulenzEngine.createGraphicsDevice({});
     var poijd8duiwq = TurbulenzEngine.createInputDevice({});
-    var draw2D = Draw2D.create({
+    var podu28719u9 = Draw2D.create({
         graphicsDevice: oiuh6dtwfdq
     });
     var qiwudhbc = 1000 / 60;
-    var qwoie31 = 0;
+    var womdomw909 = 0;
     var sco7dwqles = 0;
-    var sco7dwqlesSpeed = 2;
+    var ijwd812098 = 2;
     var kqdyteqwd2 = poijd8duiwq.keyCodes;
     var qwjdhhqw72 = 30;
     var djiw98wd38 = 1;
@@ -24,9 +24,9 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
     var idwjw83dd7 = [];
     var isjds8912e = [];
     var ud8wuiqdd9 = 5;
-    var badBulletSpeed = 2;
-    var badBulletProbability = 0.96;
-    var badBulletAmount = 20;
+    var wuhd7wud71 = 2;
+    var w8udncuw8y = 0.96;
+    var wuhdqo2uw9 = 20;
     var dpowd81u2h = 400;
     var uwdloq837q = 900;
     var wudh092dd7 = 6;
@@ -46,7 +46,7 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
     var detailedTimes = {};
 
     function initVars() {
-        var qwoie31 = 0;
+        var womdomw909 = 0;
         var sco7dwqles = 0;
         var djiw98wd38 = 1;
         var cbewoidh37 = 0.1;
@@ -54,9 +54,9 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
         var idwjw83dd7 = [];
         var isjds8912e = [];
         var ud8wuiqdd9 = 5;
-        var badBulletSpeed = 2;
-        var badBulletProbability = 0.96;
-        var badBulletAmount = 20;
+        var wuhd7wud71 = 2;
+        var w8udncuw8y = 0.96;
+        var wuhdqo2uw9 = 20;
         var dpowd81u2h = 400;
         var uwdloq837q = 900;
         var ndw8dhuiqo = !1;
@@ -152,20 +152,20 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
         if (keycode === kqdyteqwd2.LEFT) {
             ois9diyb2()
         } else if (keycode === kqdyteqwd2.RIGHT) {
-            moveRight()
+            oihvfl696()
         } else if (keycode === kqdyteqwd2.SPACE) {
             huq6w90()
         } else if (keycode === kqdyteqwd2.F) {
-            sco7dwqlesSpeed *= 2
+            ijwd812098 *= 2
         }
     };
     var onKeyUp = function onKeyUpFn(keycode) {
         if (keycode === kqdyteqwd2.LEFT) {
-            stop()
+            pdjdjuwhd91()
         } else if (keycode === kqdyteqwd2.RIGHT) {
-            stop()
+            pdjdjuwhd91()
         } else if (keycode === kqdyteqwd2.F) {
-            sco7dwqlesSpeed /= 2
+            ijwd812098 /= 2
         }
     };
     $('#shoot-btn').on('touchstart', function() {
@@ -200,30 +200,30 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
     function ois9diyb2() {
         pd9wi1ud7i = !1;
         if (ship.x >= duh8371dg3) {
-            sco7dwqles = -1 * sco7dwqlesSpeed
+            sco7dwqles = -1 * ijwd812098
         }
     }
 
-    function moveRight() {
+    function oihvfl696() {
         pd9wi1ud7i = !1;
         if (ship.x <= ddw8hu9qwd) {
-            sco7dwqles = sco7dwqlesSpeed
+            sco7dwqles = ijwd812098
         }
     }
     $('#left-btn').on('touchstart', function() {
         ois9diyb2()
     });
     $('#right-btn').on('touchstart', function() {
-        moveRight()
+        oihvfl696()
     });
     $('#left-btn').on('touchend', function() {
-        stop()
+        pdjdjuwhd91()
     });
     $('#right-btn').on('touchend', function() {
-        stop()
+        pdjdjuwhd91()
     });
 
-    function stop() {
+    function pdjdjuwhd91() {
         sco7dwqles = 0
     }
     poijd8duiwq.addEventListener('keydown', onKeyDown);
@@ -250,7 +250,7 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
         return en
     }
 
-    function newLevel() {
+    function fftfoi7tyt7() {
         var ref = null;
         if (isjds8912e.length != 0) {
             var ref = isjds8912e.reduce(function(a, b) {
@@ -269,7 +269,7 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
             }
             times.push(newNow);
             id9w8duiqo += 1;
-            increaseDifficulty();
+            dffq987dq1();
             for (var j = 0; j < 3; j++) {
                 var tempRow = [];
                 for (var i = 0; i < wudh092dd7; i++) {
@@ -287,7 +287,7 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
                     ksoqi9wudw0q()
                 }
                 isjds8912e[i][j].y += cbewoidh37;
-                draw2D.drawSprite(isjds8912e[i][j])
+                podu28719u9.drawSprite(isjds8912e[i][j])
             }
         }
     }
@@ -309,12 +309,13 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
         })
     };
 
-    function increaseDifficulty() {
+    function dffq987dq1() {
         if (!ndw8dhuiqo && !pause && !pd9wi1ud7i) {
             if (id9w8duiqo < 25) {
                 cbewoidh37 += 0.02
             }
-            badBulletProbability -= 0.03;
+            wuhdqo2uw9 += 1;
+            w8udncuw8y -= 0.03;
             djiw98wd38 += 0.03
         }
     }
@@ -330,8 +331,8 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
                     if (bulletPoint.x > isjds8912e[i][k].x - (isjds8912e[i][k].getWidth() / 2) && bulletPoint.x < isjds8912e[i][k].x + (isjds8912e[i][k].getWidth() / 2) && bulletPoint.y > isjds8912e[i][k].y - (isjds8912e[i][k].getHeight() / 2) && bulletPoint.y < isjds8912e[i][k].y + (isjds8912e[i][k].getHeight() / 2)) {
                         b93yd17qgg.splice(j, 1);
                         isjds8912e[i].splice(k, 1);
-                        qwoie31 += 200;
-                        $scope.jidow9frq = qwoie31
+                        womdomw909 += 200;
+                        $scope.jidow9frq = womdomw909
                     }
                 }
             }
@@ -419,7 +420,7 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
         if (!ndw8dhuiqo && !pause && !pd9wi1ud7i) {
             for (var i = 0; i < isjds8912e.length; i++) {
                 for (var j = 0; j < isjds8912e[i].length; j++) {
-                    if (Math.random() >= badBulletProbability && idwjw83dd7.length < badBulletAmount) {
+                    if (Math.random() >= w8udncuw8y && idwjw83dd7.length < wuhdqo2uw9) {
                         var t = Draw2DSprite.create({
                             width: 2,
                             height: 10,
@@ -434,52 +435,52 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
         }
     }
 
-    function updateScore() {
+    function qpodj812dijdoq() {
         var lmnt = document.getElementById('score');
-        lmnt.innerHTML = "Level " + id9w8duiqo + " - " + qwoie31 + " points"
+        lmnt.innerHTML = "Level " + id9w8duiqo + " - " + womdomw909 + " points"
     }
 
     function getRandomInt(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min
     }
 
-    function update() {
+    function p3l12ey7qo() {
         if (oiuh6dtwfdq.beginFrame()) {
-            draw2D.begin();
+            podu28719u9.begin();
             if (!ndw8dhuiqo) {
                 if (pd9wi1ud7i) {
-                    draw2D.drawSprite(anyKeyImg)
+                    podu28719u9.drawSprite(anyKeyImg)
                 } else {
-                    draw2D.drawSprite(bg);
+                    podu28719u9.drawSprite(bg);
                     if (!pause) {
                         $.each(b93yd17qgg, function(key, value) {
                             value.y -= ud8wuiqdd9;
-                            draw2D.drawSprite(value)
+                            podu28719u9.drawSprite(value)
                         });
                         $.each(idwjw83dd7, function(key, value) {
-                            value.y += badBulletSpeed;
-                            draw2D.drawSprite(value)
+                            value.y += wuhd7wud71;
+                            podu28719u9.drawSprite(value)
                         });
-                        draw2D.drawSprite(ship);
+                        podu28719u9.drawSprite(ship);
                         drawEnemies();
                         collision();
                         owdid91wd();
-                        updateScore()
+                        qpodj812dijdoq()
                     } else {
-                        draw2D.drawSprite(pauseImg)
+                        podu28719u9.drawSprite(pauseImg)
                     }
                 }
             } else {
-                draw2D.drawSprite(gameOver)
+                podu28719u9.drawSprite(gameOver)
             }
-            draw2D.end();
+            podu28719u9.end();
             oiuh6dtwfdq.endFrame()
         }
     }
     TurbulenzEngine.setInterval(enemyShoot, 200);
-    TurbulenzEngine.setInterval(newLevel, qiwudhbc);
+    TurbulenzEngine.setInterval(fftfoi7tyt7, qiwudhbc);
     TurbulenzEngine.setInterval(enemyMove, qiwudhbc);
-    TurbulenzEngine.setInterval(update, qiwudhbc);
+    TurbulenzEngine.setInterval(p3l12ey7qo, qiwudhbc);
     TurbulenzEngine.setInterval(deleteForgottenBullets, 100);
     TurbulenzEngine.setInterval(myMove, qiwudhbc);
     TurbulenzEngine.setInterval(function() {
