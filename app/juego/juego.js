@@ -12,6 +12,7 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
     const poqwjd719d8 = 200;
     const duh8371dg3 = 90;
     const ddw8hu9qwd = 510;
+    const wudh092dd7 = 6;
     var ijwd812098 = 2;
     var kqdyteqwd2 = poijd8duiwq.keyCodes;
     var qwjdhhqw72 = 30;
@@ -31,7 +32,6 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
     var pl3r918syt = 0;
     var dpowd81u2h = 400;
     var uwdloq837q = 900;
-    var wudh092dd7 = 6;
     var ndw8dhuiqo = !1;
     var pause = !1;
     var id9w8duiqo = 0;
@@ -171,6 +171,10 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
             ijwd812098 /= 2
         }
     };
+    var onBlur = function onBlurFn() {
+        ksoqi9wudw0q()
+    };
+    poijd8duiwq.addEventListener('blur', onBlur);
     $('#shoot-btn').on('touchstart', function() {
         huq6w90()
     });
@@ -370,11 +374,13 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
     $scope.iw9018undw = function() {
         _mocifire.database().ref("scores").child($user.id).transaction(function(p0w9dnd1) {
             if (p0w9dnd1) {
-                if ((p0w9dnd1.score < $scope.jidow9frq) && ($scope.jidow9frq === (pl3r918syt * poqwjd719d8)) && (poqwjd719d8 === 200)) {
+                console.log(pl3r918syt);
+                console.log((id9w8duiqo - 1) * wudh092dd7 * 3);
+                if ((p0w9dnd1.score < $scope.jidow9frq) && ($scope.jidow9frq === (pl3r918syt * poqwjd719d8)) && (poqwjd719d8 === 200) && (pl3r918syt > ((id9w8duiqo - 1) * wudh092dd7 * 3))) {
                     p0w9dnd1.score = pl3r918syt * poqwjd719d8;
                     p0w9dnd1.tiempos = $scope.u8wudh1mnd;
                     p0w9dnd1.juegos += 1;
-                    p0w9dnd1.sz = pl3r918syt;
+                    p0w9dnd1.sz = pl3r918syt
                 }
             }
             return p0w9dnd1
