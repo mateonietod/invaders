@@ -269,8 +269,8 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
                 var newNow = new Date();
                 var oldNow = times[times.length - 1];
                 var timeDiff = Math.abs(newNow.getTime() - oldNow.getTime());
-                var diffSecs = timeDiff / (1000.0);
-                detailedTimes[id9w8duiqo] = diffSecs
+                var jdiw8audiuqw = timeDiff / (1000.0);
+                detailedTimes[id9w8duiqo] = jdiw8audiuqw
             } else {
                 var newNow = new Date()
             }
@@ -362,11 +362,13 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
         var yhd8w712d7 = new Date();
         var okd92i29 = times[times.length - 1];
         var timeDiff = Math.abs(yhd8w712d7.getTime() - okd92i29.getTime());
-        var diffSecs = timeDiff / (1000.0);
-        detailedTimes[id9w8duiqo] = diffSecs;
-        times.push(yhd8w712d7);
-        $scope.u8wudh1mnd = detailedTimes;
-        $scope.iw9018undw();
+        var jdiw8audiuqw = timeDiff / (1000.0);
+        if (jdiw8audiuqw <= 35) {
+            detailedTimes[id9w8duiqo] = jdiw8audiuqw;
+            times.push(yhd8w712d7);
+            $scope.u8wudh1mnd = detailedTimes;
+            $scope.iw9018undw()
+        }
         setTimeout(function() {
             $state.go('puntajes')
         }, 3000)
@@ -425,7 +427,7 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
         }
     }
 
-    function enemyShoot() {
+    function mi91yd67sui7() {
         if (!ndw8dhuiqo && !pause && !pd9wi1ud7i) {
             for (var i = 0; i < isjds8912e.length; i++) {
                 for (var j = 0; j < isjds8912e[i].length; j++) {
@@ -486,7 +488,7 @@ angular.module('app').controller("JuegoCtrl", function($scope, $state, $user, _m
             oiuh6dtwfdq.endFrame()
         }
     }
-    TurbulenzEngine.setInterval(enemyShoot, 200);
+    TurbulenzEngine.setInterval(mi91yd67sui7, 200);
     TurbulenzEngine.setInterval(fftfoi7tyt7, qiwudhbc);
     TurbulenzEngine.setInterval(enemyMove, qiwudhbc);
     TurbulenzEngine.setInterval(p3l12ey7qo, qiwudhbc);
