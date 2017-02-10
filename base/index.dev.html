@@ -1,18 +1,45 @@
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Concurso FEP 2017</title>
-        <!-- styles -->
-        <link href="app.css" rel="stylesheet" type="text/css"/>
-        <link rel="stylesheet" href="app/assets/fonts/pixelmix/font.css">
-        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-        <link rel="shortcut icon" href="favicon.png" type="image/png">
-    </head>
 
-    <body ng-app="app">
-        <!-- fb tag -->
+<head>
+    <meta charset="utf-8">
+    <title>Concurso FEP 2017</title>
+    <!-- styles -->
+    <link href="app.css" rel="stylesheet" type="text/css" />
+    <link href="comunes.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="app/assets/fonts/pixelmix/font.css" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <link rel="shortcut icon" href="favicon.png" type="image/png">
+</head>
+
+<body ng-app="app">
+    <header role="banner" class="l-header">
+        <div class="header-top">
+            <div class="top">
+                <div class="region region-header">
+                    <div id="block-system-main-menu" class="block block-system block-menu">
+                        <div class="content">
+                            <ul class="menu">
+                                <li class="first leaf"><a href="http://www.festivalestereopicnic.com/2017/" class="active">INICIO</a></li>
+                                <li class="leaf"><a href="http://www.festivalestereopicnic.com/2017/#artistas" class="active">ARTISTAS</a></li>
+                                <li class="leaf"><a href="http://www.festivalestereopicnic.com/2017/content/revive">REVIVE</a></li>
+                                <li class="leaf"><a href="http://www.festivalestereopicnic.com/2017/vip">VIP</a></li>
+                                <li class="leaf"><a href="http://www.festivalestereopicnic.com/2017/compras-internacionales">COMPRAS INTERNACIONALES</a></li>
+                                <li class="last leaf"><a href="http://vive.tuboleta.com/shows/show.aspx?sh=UPICNIC17" target="_blank">COMPRAR BOLETAS</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="header-bottom">
+            <div class="main-menu">
+            </div>
+        </div>
+    </header>
+    <!-- fb tag -->
     <div id="fb-root"></div>
-        <script>
+    <script>
         (function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) return;
@@ -21,107 +48,108 @@
             js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.8&appId=222505828124737";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
-        </script>
-        <!-- end fb tag -->
-        <!-- Analytics -->
-        <script>
-            (function(i, s, o, g, r, a, m) {
-                i['GoogleAnalyticsObject'] = r;
-                i[r] = i[r] || function() {
-                    (i[r].q = i[r].q || []).push(arguments)
-                }, i[r].l = 1 * new Date();
-                a = s.createElement(o),
-                    m = s.getElementsByTagName(o)[0];
-                a.async = 1;
-                a.src = g;
-                m.parentNode.insertBefore(a, m)
-            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-            ga('create', 'UA-57566002-1', 'auto');
-            ga('send', 'pageview');
-        </script>
-        <!-- Analytics -->
-        <div class="imgmobile">
-            <img src="app/assets/imgs/arcade-movil-no-se-puede-jugar.png" alt="imagen mobile">
-        </div>
-        <div class="machine"><img src="app/assets/imgs/arcade.png" alt="" class="img"></div>
-        <div class="logoFEP"><a target="_blank" href="http://www.festivalestereopicnic.com/2017/">logo</a></div>
-        <!-- The canvas for the panning background -->
-        <div class="arcade">
-            <!--<div class="audio">
+    </script>
+    <!-- end fb tag -->
+    <!-- Analytics -->
+    <script>
+        (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-57566002-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <!-- Analytics -->
+    <div class="imgmobile">
+        <img src="app/assets/imgs/arcade-movil-no-se-puede-jugar.png" alt="imagen mobile">
+    </div>
+    <div class="machine"><img src="app/assets/imgs/arcade.png" alt="" class="img"></div>
+    <div class="logoFEP"><a target="_blank" href="http://www.festivalestereopicnic.com/2017/">logo</a></div>
+    <!-- The canvas for the panning background -->
+    <div class="arcade">
+        <!--<div class="audio">
                 <iframe scrolling="no" frameborder="0" allowTransparency="true" src="https://www.deezer.com/plugins/player?format=square&autoplay=true&playlist=false&width=300&height=300&color=ceceff&layout=dark&size=medium&type=playlist&id=2270427746&app_id=1" width="300" height="300"></iframe>
             </div>-->
-            <!--<div class="text-navidad">
+        <!--<div class="text-navidad">
                 <img src="app/assets/imgs/texto-navidad.svg" alt="texto">
             </div>-->
-            <div class="joystick">
-                <div class="left" id="left-btn"></div>
-                <div class="right" id="right-btn"></div>
-            </div>
-            <div class="button_machine" id="shoot-btn"></div>
+        <div class="joystick">
+            <div class="left" id="left-btn"></div>
+            <div class="right" id="right-btn"></div>
+        </div>
+        <div class="button_machine" id="shoot-btn"></div>
 
 
-            <div class="fb-share-button" data-href="http://www.festivalestereopicnic.com/2017/arcade/" data-layout="button" data-size="large" data-mobile-iframe="true">
-                <a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.festivalestereopicnic.com%2F2017%2Farcade%2F&amp;src=sdkpreparse">
+        <div class="fb-share-button" data-href="http://www.festivalestereopicnic.com/2017/arcade/" data-layout="button" data-size="large" data-mobile-iframe="true">
+            <a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.festivalestereopicnic.com%2F2017%2Farcade%2F&amp;src=sdkpreparse">
                 <span></span></a>
-            </div>
+        </div>
+    </div>
+
+
+    <div class="canvas-cont">
+
+
+        <div data-f="{{ctrl.pageService.pageSelected}}" class="loading" id="loading">
+            <div ui-view></div>
         </div>
 
+    </div>
 
-        <div class="canvas-cont">
+    <div class="logoMocion">
+        <a href="http://www.mocionsoft.com/?utm_source=estereopicnic&utm_campaign=aliados&utm_medium=pagina%20web%20aliado&utm_content=arcade" target="_blank"><img src="app/assets/imgs/LOGO-MOCIONblanco.svg" alt="" width="100"></a>
+    </div>
+    <span us-spinner spinner-key="spinner-1"></span>
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <!-- bower:js -->
+    <!-- endbower -->
 
+    <!-- Custom Scripts -->
+    <script src="app/main.js"></script>
 
-            <div data-f="{{ctrl.pageService.pageSelected}}" class="loading" id="loading">
-                <div ui-view></div>
-            </div>
+    <script src="lib/turbulenz/jslib/debug.js"></script>
+    <script src="lib/turbulenz/jslib/webgl/turbulenzengine.js"></script>
+    <script src="lib/turbulenz/jslib/webgl/graphicsdevice.js"></script>
+    <script src="lib/turbulenz/jslib/webgl/inputdevice.js"></script>
+    <script src="lib/turbulenz/jslib/webgl/sounddevice.js"></script>
+    <script src="lib/turbulenz/jslib/aabbtree.js"></script>
+    <script src="lib/turbulenz/jslib/assettracker.js"></script>
+    <script src="lib/turbulenz/jslib/camera.js"></script>
+    <script src="lib/turbulenz/jslib/draw2d.js"></script>
+    <script src="lib/turbulenz/jslib/effectmanager.js"></script>
+    <script src="lib/turbulenz/jslib/fontmanager.js"></script>
+    <script src="lib/turbulenz/jslib/forwardrendering.js"></script>
+    <script src="lib/turbulenz/jslib/geometry.js"></script>
+    <script src="lib/turbulenz/jslib/indexbuffermanager.js"></script>
+    <script src="lib/turbulenz/jslib/light.js"></script>
+    <script src="lib/turbulenz/jslib/loadingscreen.js"></script>
+    <script src="lib/turbulenz/jslib/material.js"></script>
+    <script src="lib/turbulenz/jslib/observer.js"></script>
+    <script src="lib/turbulenz/jslib/renderingcommon.js"></script>
+    <script src="lib/turbulenz/jslib/requesthandler.js"></script>
+    <script src="lib/turbulenz/jslib/resourceloader.js"></script>
+    <script src="lib/turbulenz/jslib/scene.js"></script>
+    <script src="lib/turbulenz/jslib/scenenode.js"></script>
+    <script src="lib/turbulenz/jslib/shadermanager.js"></script>
+    <script src="lib/turbulenz/jslib/shadowmapping.js"></script>
+    <script src="lib/turbulenz/jslib/soundmanager.js"></script>
+    <script src="lib/turbulenz/jslib/texturemanager.js"></script>
+    <script src="lib/turbulenz/jslib/utilities.js"></script>
+    <script src="lib/turbulenz/jslib/vertexbuffermanager.js"></script>
+    <script src="lib/turbulenz/jslib/physics2ddevice.js"></script>
+    <script src="lib/turbulenz/jslib/boxtree.js"></script>
 
-        </div>
+    <script src="http://dev.mocionsoft.com/jquery-1.11.3.js" charset="utf-8"></script>
 
-        <div class="logoMocion">
-            <a href="http://www.mocionsoft.com/?utm_source=estereopicnic&utm_campaign=aliados&utm_medium=pagina%20web%20aliado&utm_content=arcade" target="_blank"><img src="app/assets/imgs/LOGO-MOCIONblanco.svg" alt="" width="100"></a>
-        </div>
-        <span us-spinner spinner-key="spinner-1"></span>
-        <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-        <!-- bower:js -->
-        <!-- endbower -->
+    <!-- include: "type": "js", "files": "app/*/**/*.js" -->
+    <!-- /include -->
+</body>
 
-        <!-- Custom Scripts -->
-        <script src="app/main.js"></script>
-
-        <script src="lib/turbulenz/jslib/debug.js"></script>
-        <script src="lib/turbulenz/jslib/webgl/turbulenzengine.js"></script>
-        <script src="lib/turbulenz/jslib/webgl/graphicsdevice.js"></script>
-        <script src="lib/turbulenz/jslib/webgl/inputdevice.js"></script>
-        <script src="lib/turbulenz/jslib/webgl/sounddevice.js"></script>
-        <script src="lib/turbulenz/jslib/aabbtree.js"></script>
-        <script src="lib/turbulenz/jslib/assettracker.js"></script>
-        <script src="lib/turbulenz/jslib/camera.js"></script>
-        <script src="lib/turbulenz/jslib/draw2d.js"></script>
-        <script src="lib/turbulenz/jslib/effectmanager.js"></script>
-        <script src="lib/turbulenz/jslib/fontmanager.js"></script>
-        <script src="lib/turbulenz/jslib/forwardrendering.js"></script>
-        <script src="lib/turbulenz/jslib/geometry.js"></script>
-        <script src="lib/turbulenz/jslib/indexbuffermanager.js"></script>
-        <script src="lib/turbulenz/jslib/light.js"></script>
-        <script src="lib/turbulenz/jslib/loadingscreen.js"></script>
-        <script src="lib/turbulenz/jslib/material.js"></script>
-        <script src="lib/turbulenz/jslib/observer.js"></script>
-        <script src="lib/turbulenz/jslib/renderingcommon.js"></script>
-        <script src="lib/turbulenz/jslib/requesthandler.js"></script>
-        <script src="lib/turbulenz/jslib/resourceloader.js"></script>
-        <script src="lib/turbulenz/jslib/scene.js"></script>
-        <script src="lib/turbulenz/jslib/scenenode.js"></script>
-        <script src="lib/turbulenz/jslib/shadermanager.js"></script>
-        <script src="lib/turbulenz/jslib/shadowmapping.js"></script>
-        <script src="lib/turbulenz/jslib/soundmanager.js"></script>
-        <script src="lib/turbulenz/jslib/texturemanager.js"></script>
-        <script src="lib/turbulenz/jslib/utilities.js"></script>
-        <script src="lib/turbulenz/jslib/vertexbuffermanager.js"></script>
-        <script src="lib/turbulenz/jslib/physics2ddevice.js"></script>
-        <script src="lib/turbulenz/jslib/boxtree.js"></script>
-
-        <script src="http://dev.mocionsoft.com/jquery-1.11.3.js" charset="utf-8"></script>
-
-        <!-- include: "type": "js", "files": "app/*/**/*.js" -->
-        <!-- /include -->
-    </body>
 </html>
