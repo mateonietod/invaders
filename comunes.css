@@ -816,6 +816,11 @@ margin-top: 100px;
 
 /*---------------------------------------------------------------- */
 
+header{
+    position: relative;
+    z-index: 99999999;
+}
+
 #block-menu-menu-menu-editor {
     background-color: #fff;
     margin: 0;
@@ -836,17 +841,17 @@ margin-top: 100px;
     width: calc(100% - 200px);
     background-color: #f5df78;
     padding: 1em 0 1em 0;
-    min-height: 88px;
+ /* min-height: 88px; */
 }
-
-#block-system-main-menu .content>ul.menu li:nth-child(1) {
+#block-system-main-menu .content>ul.menu li:nth-child(1){display: none;}
+/*#block-system-main-menu .content>ul.menu li:nth-child(1) {
     width: 25%;
 }
 
 #block-system-main-menu .content>ul.menu li:nth-child(1):hover {
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
-}
+}*/
 
 #block-system-main-menu .content>ul.menu li:nth-child(1) a, #block-system-main-menu .content>ul.menu li:nth-child(1) span {
     cursor: pointer;
