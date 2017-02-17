@@ -815,6 +815,9 @@ margin-top: 100px;
 
 
 /*---------------------------------------------------------------- */
+@media(max-width: 768px){
+    #block-system-main-menu{display: none;}
+}
 
 header{
     position: relative;
