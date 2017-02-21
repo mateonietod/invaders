@@ -57,6 +57,25 @@ var app = angular.module('app', []).controller('cmsCtrl', function($scope) {
         saveAs(blob, "Users" + date + ".xls");
     };
 
+    $scope.clean = function(){
+        console.log('Cleaning...');
+        firebase.database().ref('usuarios').on('value', function (snapshot) {
+            var updates = {};
+          snapshot.forEach(function(sn){
+            var div = sn.key.split('user');
+            if(div.length == 2){
+                var text = div[1];
+                if(!/^\d+$/.test(text)){
+		    console.log('Deleting');
+                    updates[sn.key] = null;
+                }
+            }
+        });
+        console.log(updates);
+        firebase.database().ref('usuarios').update(updates);
+        });
+    }
+
     var prettyDate = function(date, startDate) {
         var now = new Date();
         return ((now.getMonth() + 1) + '/' + (now.getDate()) + '/' + now.getFullYear() + " " + now.getHours() + ':' +
