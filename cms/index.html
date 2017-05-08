@@ -26,19 +26,17 @@
                 <thead>
                     <tr>
                         <th>Nombre</th>
-                        <th>Fecha</th>
+                        <th>Cedula</th>
+                        <th>Correo</th>
                         <th>Score</th>
-                        <th>Intentos</th>
-                        <th>Muertes</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="(key, user) in usuarios |filter:userSearch | orderBy:'-score'">
                         <td>{{user.nombre}}</td>
-                        <td>{{user.fecha}}</td>
+                        <td>{{user.cedula}}</td>
+                        <td>{{user.correo}}</td>
                         <td>{{user.score}}</td>
-                        <td>{{user.juegos}}</td>
-                        <td>{{user.sz}}</td>
                     </tr>
                 </tbody>
             </table>
